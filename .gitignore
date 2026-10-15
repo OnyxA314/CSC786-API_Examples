@@ -1,0 +1,6 @@
+#ignore the dotenv file
+.env
+
+
+#ignore the virtual environments
+venv_nk
