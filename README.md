@@ -1,3 +1,6 @@
+NOTE: FOR REVIEW REPRODUCABILITY WITHOUT A KEY USE PROJECT 2 - weather_gov_api.py - FILE
+
+
 This repository contains 2 projects:
   1) project using the ninkakiwi API for usage of an API that requests a private access token
   2) Project using the weather.gov API for usage of a more gneral API that is highly useful without the need for a private access token
