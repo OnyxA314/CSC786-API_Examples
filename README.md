@@ -25,4 +25,6 @@ Project 2)
   In order to run this file the following python packages need to be installed:
     'json'
     'requests'
-  with these files being found in the requirements.txt file. 
+  with these files being found in the requirements.txt file.
+
+  NOTE: Due to this API being updated every 12 hours for the weeklong forcast or even every hour for the hour-by-hour forcast results will vary due to testing times. 
