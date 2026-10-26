@@ -5,10 +5,19 @@ import requests #usage of the API
 #gotten below from: https://latitude.to/articles-by-country/us/united-states/30197/dakota-state-university
 DSU_Lat = 44.00
 DSU_Lon = -97.06
+DSU_Header = "786"
+
 
 #NOTE: if making it nice actually allow user to type in address or select on map and SAFELY AND SECURELY use that info to get lat and long
     #I am not 100% sure if any open source or python packages let me do that 
 
+
+#API access says each request MUST have a header representing some string to know what to potentially block if rate limited
+    #works without an applied header but want to ensure following guidelines
+
+header = {
+    "User-Agent": DSU_Header
+}
 
 #Step 1 - looking at the API this initial endpoint leads to a lot more links for finer details on specific weathers 
     #in order to get the actual weather and windspeed and whatnot we need to get the 'forcast' from 'properties'
@@ -17,7 +26,7 @@ DSU_Lon = -97.06
     #have to do this intermediate step as looking at the API myself there seems to be seemingly arbitrary numbering with what weather station we have. 
     #Theoretically can hardcode and skip this intermediate step but I want to have this code be generalizable
 url = f"https://api.weather.gov/points/{DSU_Lat},{DSU_Lon}"
-response = requests.get(url, timeout=15) #15 just seems to be standard 
+response = requests.get(url, headers=header, timeout=15) #15 just seems to be standard 
 response.raise_for_status()
  
 
@@ -41,7 +50,7 @@ if wanted == 1:
     forecast_url = response.json()["properties"]["forecast"] #woah this was a lot easier code than I thought :) 
 
     # Retrieve the actual forecast
-    response = requests.get(forecast_url, timeout=15)
+    response = requests.get(forecast_url, headers = header, timeout=15)
     response.raise_for_status()
 
     if not response:
@@ -65,7 +74,7 @@ elif wanted == 2:
     #HOURLY FORCAST
     print("\n\n")
     url = f"https://api.weather.gov/points/{DSU_Lat},{DSU_Lon}"
-    response = requests.get(url, timeout=15) #15 just seems to be standard 
+    response = requests.get(url, headers=header, timeout=15) #15 just seems to be standard 
     response.raise_for_status()
 
     
